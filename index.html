@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CommerceOS Pro Colombia — El sistema de gestión para tu negocio</title>
+<meta name="description" content="POS, inventario, facturación electrónica DIAN, RRHH y finanzas en un solo sistema hecho para negocios colombianos." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy-950: #0b1120;
+    --navy-900: #0f1729;
+    --navy-800: #151f38;
+    --blue-600: #4f6df5;
+    --blue-500: #6478f0;
+    --indigo-600: #6d4ff5;
+    --purple-500: #8b5cf6;
+    --emerald-500: #10b981;
+    --emerald-600: #059669;
+    --amber-500: #f59e0b;
+    --slate-50: #f8fafc;
+    --slate-100: #f1f5f9;
+    --slate-200: #e2e8f0;
+    --slate-300: #cbd5e1;
+    --slate-500: #64748b;
+    --slate-600: #475569;
+    --slate-700: #334155;
+    --slate-900: #0f172a;
+    --card-radius: 20px;
+    --max-w: 1180px;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: var(--slate-50);
+    color: var(--slate-900);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  img { max-width: 100%; display: block; }
+
+  .wrap {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  a { text-decoration: none; color: inherit; }
+
+  /* ---------- NAV ---------- */
+  header.nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(248,250,252,0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--slate-200);
+  }
+  .nav-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 18px; letter-spacing: -0.02em; }
+  .nav-brand img { width: 34px; height: 34px; border-radius: 8px; object-fit: cover; }
+  .nav-links { display: flex; gap: 32px; font-size: 14.5px; font-weight: 600; color: var(--slate-600); }
+  .nav-links a:hover { color: var(--blue-600); }
+  .nav-cta {
+    background: linear-gradient(135deg, var(--blue-600), var(--indigo-600));
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 14px;
+    box-shadow: 0 4px 14px rgba(79,109,245,0.35);
+  }
+  @media (max-width: 780px) { .nav-links { display: none; } }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    position: relative;
+    background: radial-gradient(ellipse 1200px 600px at 50% -10%, #1c2b52 0%, var(--navy-950) 55%, var(--navy-950) 100%);
+    color: #fff;
+    padding: 96px 0 40px;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(600px 300px at 15% 20%, rgba(109,79,245,0.25), transparent 60%),
+      radial-gradient(500px 300px at 85% 10%, rgba(16,185,129,0.18), transparent 60%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 56px;
+    align-items: center;
+  }
+  @media (max-width: 900px) { .hero-inner { grid-template-columns: 1fr; text-align: center; } }
+
+  .badge-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(16,185,129,0.12);
+    border: 1px solid rgba(16,185,129,0.35);
+    color: #6ee7b7;
+    padding: 7px 16px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    margin-bottom: 24px;
+  }
+  .badge-pill .dot { width: 7px; height: 7px; border-radius: 50%; background: #34d399; box-shadow: 0 0 0 3px rgba(52,211,153,0.25); }
+
+  .hero h1 {
+    font-size: clamp(34px, 4.6vw, 54px);
+    line-height: 1.08;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    margin: 0 0 22px;
+  }
+  .hero h1 .grad {
+    background: linear-gradient(135deg, #7c9bff, #a78bfa 55%, #6ee7b7);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .hero p.lead {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #b6c0e0;
+    max-width: 520px;
+    margin: 0 0 34px;
+  }
+  @media (max-width: 900px) { .hero p.lead { margin-left: auto; margin-right: auto; } }
+
+  .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 36px; }
+  @media (max-width: 900px) { .hero-ctas { justify-content: center; } }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--blue-600), var(--indigo-600));
+    color: #fff;
+    padding: 16px 28px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 15.5px;
+    box-shadow: 0 10px 30px rgba(79,109,245,0.4);
+    transition: transform .15s ease, box-shadow .15s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(79,109,245,0.5); }
+  .btn-secondary {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.16);
+    color: #fff;
+    padding: 16px 26px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 15.5px;
+  }
+  .btn-secondary:hover { background: rgba(255,255,255,0.1); }
+
+  .hero-trust { display: flex; gap: 28px; flex-wrap: wrap; }
+  @media (max-width: 900px) { .hero-trust { justify-content: center; } }
+  .hero-trust .item { display: flex; align-items: center; gap: 8px; font-size: 13.5px; color: #93a0c2; font-weight: 600; }
+  .hero-trust svg { flex-shrink: 0; color: #6ee7b7; }
+
+  .hero-visual {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .logo-glow {
+    position: relative;
+    width: min(360px, 78vw);
+  }
+  .logo-glow::before {
+    content: "";
+    position: absolute;
+    inset: -40px;
+    background: radial-gradient(circle, rgba(124,155,255,0.35), transparent 65%);
+    filter: blur(10px);
+    z-index: 0;
+  }
+  .logo-glow img {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    border-radius: 28px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.08);
+  }
+  .float-card {
+    position: absolute;
+    background: rgba(15,23,41,0.9);
+    border: 1px solid rgba(255,255,255,0.1);
+    backdrop-filter: blur(6px);
+    border-radius: 14px;
+    padding: 12px 16px;
+    font-size: 12.5px;
+    font-weight: 700;
+    color: #fff;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .float-card .label { color: #94a3c9; font-weight: 600; display: block; font-size: 11px; }
+  .float-card.c1 { top: 6%; left: -6%; }
+  .float-card.c2 { bottom: 8%; right: -8%; }
+  .float-card .ic { width: 30px; height: 30px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  @media (max-width: 900px) { .float-card { display: none; } }
+
+  /* ---------- MARQUEE / STRIP ---------- */
+  .strip {
+    background: var(--navy-900);
+    color: #8fa0cc;
+    padding: 18px 0;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .strip span.hl { color: #6ee7b7; }
+
+  /* ---------- SECTION GENERIC ---------- */
+  section { padding: 96px 0; }
+  .eyebrow {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--blue-600);
+    background: #eef1ff;
+    padding: 6px 14px;
+    border-radius: 999px;
+    margin-bottom: 16px;
+  }
+  .section-head { max-width: 680px; margin: 0 auto 56px; text-align: center; }
+  .section-head h2 {
+    font-size: clamp(28px, 3.4vw, 40px);
+    font-weight: 900;
+    letter-spacing: -0.025em;
+    line-height: 1.15;
+    margin: 0 0 16px;
+    color: var(--slate-900);
+  }
+  .section-head p {
+    font-size: 17px;
+    color: var(--slate-600);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* ---------- URGENCY / WHY ---------- */
+  .why-section { background: linear-gradient(180deg, #fff, var(--slate-50)); }
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  @media (max-width: 900px) { .why-grid { grid-template-columns: 1fr; } }
+  .why-card {
+    background: #fff;
+    border: 1px solid var(--slate-200);
+    border-radius: var(--card-radius);
+    padding: 30px;
+    box-shadow: 0 1px 2px rgba(15,23,42,0.04);
+  }
+  .why-card .ic {
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 18px;
+  }
+  .why-card h3 { font-size: 18.5px; font-weight: 800; margin: 0 0 10px; letter-spacing: -0.01em; }
+  .why-card p { font-size: 14.5px; color: var(--slate-600); line-height: 1.6; margin: 0; }
+
+  /* ---------- FEATURE ROWS (screenshots) ---------- */
+  .feature-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+    padding: 72px 0;
+    border-bottom: 1px solid var(--slate-200);
+  }
+  .feature-row:last-child { border-bottom: none; }
+  .feature-row.reverse .feature-copy { order: 2; }
+  .feature-row.reverse .feature-shot { order: 1; }
+  @media (max-width: 900px) {
+    .feature-row, .feature-row.reverse { grid-template-columns: 1fr; gap: 32px; }
+    .feature-row.reverse .feature-copy { order: 1; }
+    .feature-row.reverse .feature-shot { order: 2; }
+  }
+  .feature-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12.5px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 6px 13px;
+    border-radius: 999px;
+    margin-bottom: 18px;
+  }
+  .feature-copy h3 {
+    font-size: clamp(24px, 2.6vw, 30px);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    margin: 0 0 16px;
+    line-height: 1.2;
+  }
+  .feature-copy p.desc { font-size: 15.5px; color: var(--slate-600); line-height: 1.65; margin: 0 0 22px; }
+  .feature-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+  .feature-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 14.5px; color: var(--slate-700); font-weight: 500; }
+  .feature-list svg { flex-shrink: 0; margin-top: 2px; }
+
+  .feature-shot {
+    position: relative;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 24px 60px -12px rgba(15,23,42,0.25), 0 0 0 1px rgba(15,23,42,0.06);
+    background: #fff;
+  }
+  .feature-shot img { width: 100%; display: block; }
+  .feature-shot .browser-bar {
+    background: #eef1f6;
+    padding: 10px 14px;
+    display: flex; gap: 6px;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  .feature-shot .browser-bar span { width: 10px; height: 10px; border-radius: 50%; background: #cbd5e1; }
+  .feature-shot video { width: 100%; display: block; background: #000; }
+
+  /* ---------- VIDEO DEMOS ---------- */
+  .video-section { background: linear-gradient(180deg, #fff, #f5f7ff); }
+  .video-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+  @media (max-width: 900px) { .video-grid { grid-template-columns: 1fr; } }
+  .video-card {
+    background: #fff;
+    border-radius: var(--card-radius);
+    border: 1px solid var(--slate-200);
+    overflow: hidden;
+    box-shadow: 0 24px 60px -16px rgba(15,23,42,0.2), 0 0 0 1px rgba(15,23,42,0.04);
+  }
+  .video-card video { width: 100%; display: block; background: #000; max-height: 420px; }
+  .video-card .video-caption { padding: 22px 26px 26px; }
+  .video-card .video-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 999px;
+    margin-bottom: 12px;
+  }
+  .video-card h4 { font-size: 18px; font-weight: 800; margin: 0 0 8px; letter-spacing: -0.01em; }
+  .video-card p { font-size: 14px; color: var(--slate-600); line-height: 1.6; margin: 0; }
+
+  /* ---------- MOSAIC GRID (secondary features) ---------- */
+  .mosaic {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+  }
+  @media (max-width: 900px) { .mosaic { grid-template-columns: 1fr; } }
+  .mosaic-card {
+    background: #fff;
+    border-radius: var(--card-radius);
+    border: 1px solid var(--slate-200);
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(15,23,42,0.04);
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .mosaic-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px -12px rgba(15,23,42,0.15); }
+  .mosaic-card img { width: 100%; border-bottom: 1px solid var(--slate-200); }
+  .mosaic-card .body { padding: 20px 22px 24px; }
+  .mosaic-card h4 { font-size: 16.5px; font-weight: 800; margin: 0 0 8px; letter-spacing: -0.01em; }
+  .mosaic-card p { font-size: 13.8px; color: var(--slate-600); line-height: 1.55; margin: 0; }
+
+  /* ---------- PLANS ---------- */
+  .plans-section {
+    background: var(--navy-950);
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  .plans-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(600px 400px at 80% 0%, rgba(109,79,245,0.2), transparent 60%);
+    pointer-events: none;
+  }
+  .plans-section .section-head h2 { color: #fff; }
+  .plans-section .section-head p { color: #a5b1d6; }
+  .plans-grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    max-width: 920px;
+    margin: 0 auto;
+  }
+  @media (max-width: 780px) { .plans-grid { grid-template-columns: 1fr; } }
+  .plan-card {
+    background: var(--navy-800);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 22px;
+    padding: 38px 34px;
+    display: flex;
+    flex-direction: column;
+  }
+  .plan-card.featured {
+    background: linear-gradient(160deg, #1c2b52, #241a4d);
+    border: 1px solid rgba(139,92,246,0.5);
+    box-shadow: 0 0 0 1px rgba(139,92,246,0.15), 0 30px 60px -20px rgba(109,79,245,0.5);
+    position: relative;
+  }
+  .plan-card.featured::after {
+    content: "MÁS ELEGIDO";
+    position: absolute;
+    top: -13px; right: 28px;
+    background: linear-gradient(135deg, var(--blue-600), var(--purple-500));
+    color: #fff;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    padding: 6px 14px;
+    border-radius: 999px;
+  }
+  .plan-card .plan-name { font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: #93a0c2; margin-bottom: 10px; }
+  .plan-card.featured .plan-name { color: #b9a6ff; }
+  .plan-card .plan-tag { font-size: 22px; font-weight: 900; letter-spacing: -0.02em; margin-bottom: 6px; }
+  .plan-card .plan-sub { font-size: 14px; color: #8fa0cc; margin-bottom: 28px; line-height: 1.5; }
+  .plan-list { list-style: none; margin: 0 0 30px; padding: 0; display: flex; flex-direction: column; gap: 13px; flex-grow: 1; }
+  .plan-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 14.5px; color: #d3daf0; font-weight: 500; }
+  .plan-list li.dim { color: #5c6a91; }
+  .plan-list svg.yes { flex-shrink: 0; color: #34d399; margin-top: 2px; }
+  .plan-list svg.no { flex-shrink: 0; color: #4c587f; margin-top: 2px; }
+  .plan-btn {
+    text-align: center;
+    padding: 14px 20px;
+    border-radius: 11px;
+    font-weight: 700;
+    font-size: 14.5px;
+  }
+  .plan-card:not(.featured) .plan-btn { background: rgba(255,255,255,0.08); color: #fff; border: 1px solid rgba(255,255,255,0.15); }
+  .plan-card.featured .plan-btn { background: linear-gradient(135deg, var(--blue-600), var(--purple-500)); color: #fff; box-shadow: 0 10px 24px rgba(139,92,246,0.4); }
+  .plans-note { text-align: center; color: #7d8bb5; font-size: 13.5px; margin-top: 30px; position: relative; }
+
+  /* ---------- SECURITY / CLOUD ---------- */
+  .security-section {
+    background: linear-gradient(180deg, var(--slate-50), #fff);
+  }
+  .security-grid {
+    display: grid;
+    grid-template-columns: 0.95fr 1.05fr;
+    gap: 56px;
+    align-items: center;
+  }
+  @media (max-width: 900px) { .security-grid { grid-template-columns: 1fr; } }
+  .security-points { display: flex; flex-direction: column; gap: 22px; }
+  .sec-point { display: flex; gap: 16px; }
+  .sec-point .ic {
+    width: 44px; height: 44px; flex-shrink: 0;
+    border-radius: 12px;
+    background: #eef1ff;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .sec-point h4 { font-size: 16.5px; font-weight: 800; margin: 0 0 6px; }
+  .sec-point p { font-size: 14.5px; color: var(--slate-600); line-height: 1.6; margin: 0; }
+
+  /* ---------- CTA FINAL ---------- */
+  .cta-final {
+    background: radial-gradient(ellipse 900px 500px at 50% 0%, #1c2b52, var(--navy-950) 60%);
+    color: #fff;
+    text-align: center;
+    padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-final::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(500px 260px at 15% 90%, rgba(16,185,129,0.15), transparent 60%);
+  }
+  .cta-final .wrap { position: relative; }
+  .cta-final img.logo-small { width: 84px; margin: 0 auto 28px; border-radius: 18px; box-shadow: 0 16px 40px rgba(0,0,0,0.5); }
+  .cta-final h2 {
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    margin: 0 0 18px;
+    max-width: 720px;
+    margin-left: auto; margin-right: auto;
+  }
+  .cta-final p { font-size: 16.5px; color: #b6c0e0; max-width: 560px; margin: 0 auto 36px; line-height: 1.6; }
+  .cta-final .hero-ctas { justify-content: center; margin-bottom: 0; }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    background: var(--navy-950);
+    color: #7d8bb5;
+    padding: 40px 0;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .footer-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    font-size: 13.5px;
+  }
+  .footer-brand { display: flex; align-items: center; gap: 10px; font-weight: 800; color: #fff; }
+  .footer-brand img { width: 26px; height: 26px; border-radius: 6px; }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="nav-brand">
+      <img src="assets/logo.jpg" alt="CommerceOS Pro" />
+      CommerceOS Pro
+    </div>
+    <nav class="nav-links">
+      <a href="#modulos">Módulos</a>
+      <a href="#dian">Facturación DIAN</a>
+      <a href="#demo">Video Demo</a>
+      <a href="#planes">Planes</a>
+      <a href="#nube">Seguridad</a>
+    </nav>
+    <a href="#contacto" class="nav-cta">Pedir una demo</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-inner">
+    <div class="hero-copy">
+      <div class="badge-pill"><span class="dot"></span> Cumplimiento DIAN 2026 activo</div>
+      <h1>El sistema que <span class="grad">tu negocio en Colombia</span> necesita para vender, facturar y crecer sin dolores de cabeza</h1>
+      <p class="lead">Punto de venta, inventario, proveedores, caja, RRHH y facturación electrónica DIAN — todo en un solo sistema de escritorio, simple de usar y que sigue funcionando aunque se caiga el internet.</p>
+      <div class="hero-ctas">
+        <a href="#contacto" class="btn-primary">
+          Quiero mi demo gratis
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="#modulos" class="btn-secondary">Ver todos los módulos</a>
+      </div>
+      <div class="hero-trust">
+        <div class="item">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+          Factura electrónica DIAN incluida
+        </div>
+        <div class="item">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+          Funciona sin internet
+        </div>
+        <div class="item">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+          Respaldo automático en la nube
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="logo-glow">
+        <img src="assets/logo.jpg" alt="Logo oficial CommerceOS Pro" />
+        <div class="float-card c1">
+          <div class="ic" style="background:#dcfce7;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+          </div>
+          <div>
+            <span class="label">Factura DIAN</span>
+            AUTORIZADA
+          </div>
+        </div>
+        <div class="float-card c2">
+          <div class="ic" style="background:#e0e7ff;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4f46e5" stroke-width="2.5"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg>
+          </div>
+          <div>
+            <span class="label">Ventas de hoy</span>
+            +$82.200
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="strip">
+  Punto de Venta &nbsp;·&nbsp; Inventario &nbsp;·&nbsp; <span class="hl">Facturación DIAN</span> &nbsp;·&nbsp; Proveedores &nbsp;·&nbsp; Caja y Finanzas &nbsp;·&nbsp; RRHH &nbsp;·&nbsp; Multi-usuario
+</div>
+
+<section class="why-section" id="por-que">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Por qué ahora</span>
+      <h2>Facturar en papel o a mano ya no alcanza</h2>
+      <p>Desde 2026 la facturación electrónica ante la DIAN es obligatoria para cada vez más negocios. Sumale inventario que no cuadra, planillas de RRHH en Excel y una caja que nadie concilia — CommerceOS Pro resuelve las cuatro cosas a la vez.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="ic" style="background:#fee2e2;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2.2"><path d="M12 9v4M12 17h.01"/><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L14.71 3.86a2 2 0 00-3.42 0z"/></svg>
+        </div>
+        <h3>El riesgo de no facturar bien</h3>
+        <p>Un negocio formal que no emite factura electrónica válida ante la DIAN se expone a sanciones. CommerceOS Pro arma, firma y transmite cada factura automáticamente al cerrar la venta.</p>
+      </div>
+      <div class="why-card">
+        <div class="ic" style="background:#fef3c7;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        </div>
+        <h3>Tiempo que hoy se pierde</h3>
+        <p>Cuadrar caja a mano, sacar el inventario en un cuaderno, liquidar sueldos con calculadora. Todo eso pasa a ser un par de clics, sin planillas sueltas ni WhatsApp de "¿cuánto quedó en caja?".</p>
+      </div>
+      <div class="why-card">
+        <div class="ic" style="background:#dbeafe;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg>
+        </div>
+        <h3>Crecer sin perder el control</h3>
+        <p>Ya sea un local o varias sucursales, con múltiples usuarios y roles, vos seguís viendo todo desde un mismo panel: ventas, stock, proveedores y plata, en tiempo real.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="modulos">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Todo en un solo sistema</span>
+      <h2>Un módulo para cada parte de tu negocio</h2>
+      <p>Nada de andar combinando cinco aplicaciones distintas. Vendé, controlá stock, pagale a proveedores y llevá la contabilidad desde la misma pantalla.</p>
+    </div>
+
+    <div class="feature-row">
+      <div class="feature-copy">
+        <span class="feature-tag" style="background:#eef1ff; color:#4338ca;">Panel de Control</span>
+        <h3>Tu negocio, de un vistazo</h3>
+        <p class="desc">Ventas del día, tickets emitidos, alertas de stock y la evolución semanal de tus ingresos — apenas iniciás sesión ya sabés cómo viene el día, sin tener que ir módulo por módulo.</p>
+        <ul class="feature-list">
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4f6df5" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Indicadores de ventas, tickets y stock en vivo</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4f6df5" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Gráfico de evolución de ventas semanal</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4f6df5" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Actividad reciente de toda la operación</li>
+        </ul>
+      </div>
+      <div class="feature-shot">
+        <div class="browser-bar"><span></span><span></span><span></span></div>
+        <img src="assets/dashboard.png" alt="Panel de control CommerceOS Pro" />
+      </div>
+    </div>
+
+    <div class="feature-row reverse">
+      <div class="feature-copy">
+        <span class="feature-tag" style="background:#e0f2fe; color:#0369a1;">Punto de Venta</span>
+        <h3>Vender rápido, sin fricción</h3>
+        <p class="desc">Buscá por código de barras o nombre, armá el carrito y cobrá en segundos. La confirmación de pago no espera a la DIAN — la factura electrónica se emite en segundo plano mientras el cliente ya se está yendo con su compra.</p>
+        <ul class="feature-list">
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Escaneo de código de barras o búsqueda rápida</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Múltiples medios de pago (efectivo, tarjeta, apps, PSE)</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Vista previa del ticket antes de imprimir</li>
+        </ul>
+      </div>
+      <div class="feature-shot">
+        <div class="browser-bar"><span></span><span></span><span></span></div>
+        <img src="assets/pos-general.png" alt="Punto de venta CommerceOS Pro" />
+      </div>
+    </div>
+
+    <div class="feature-row">
+      <div class="feature-copy">
+        <span class="feature-tag" style="background:#dcfce7; color:#15803d;">Inventario</span>
+        <h3>Stock siempre al día, sin sorpresas</h3>
+        <p class="desc">Cada venta descuenta stock automáticamente. Categorizá productos, controlá costos y precios, y exportá todo a Excel o PDF cuando lo necesites para tu contador o para hacer un pedido.</p>
+        <ul class="feature-list">
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Alertas automáticas de stock bajo</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Costo, precio de venta y valorización por producto</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Exportación a Excel y PDF con un clic</li>
+        </ul>
+      </div>
+      <div class="feature-shot">
+        <div class="browser-bar"><span></span><span></span><span></span></div>
+        <img src="assets/inventario.png" alt="Gestión de inventario CommerceOS Pro" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="dian" style="background:linear-gradient(180deg, #fff, #f5f7ff);">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow" style="background:#dcfce7; color:#15803d;">El corazón legal del sistema</span>
+      <h2>Facturación Electrónica DIAN, resuelta de verdad</h2>
+      <p>Cada venta genera automáticamente una factura electrónica válida ante la DIAN — con CUFE, QR y PDF — sin que tengas que tocar nada extra ni saber de sistemas.</p>
+    </div>
+
+    <div class="feature-row" style="border-bottom:none; padding-top:0;">
+      <div class="feature-copy">
+        <h3 style="font-size:24px;">Se factura sola, aunque falle el internet</h3>
+        <p class="desc">Si en el momento de la venta no hay conexión, la venta se completa igual — nunca le hacés esperar al cliente — y la factura queda pendiente para reintentarse sola apenas vuelva la señal, con reintentos automáticos y control total sobre lo que quedó pendiente o rechazado.</p>
+        <ul class="feature-list">
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> CUFE, QR y PDF de la DIAN en cada ticket</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Reintento automático de facturas pendientes</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Notas crédito para anulaciones, sin salir del sistema</li>
+        </ul>
+      </div>
+      <div class="feature-shot">
+        <div class="browser-bar"><span></span><span></span><span></span></div>
+        <img src="assets/pos-venta-exitosa.png" alt="Factura electrónica DIAN emitida" />
+      </div>
+    </div>
+
+    <div class="mosaic" style="margin-top:24px;">
+      <div class="mosaic-card">
+        <img src="assets/facturacion-dian.png" alt="Panel de facturas pendientes DIAN" />
+        <div class="body">
+          <h4>Panel de control de facturación</h4>
+          <p>Mirá de un vistazo qué facturas están pendientes o rechazadas, y reintentalas todas con un clic.</p>
+        </div>
+      </div>
+      <div class="mosaic-card">
+        <img src="assets/ticket-qr.png" alt="Ticket con QR de la DIAN" />
+        <div class="body">
+          <h4>Ticket con QR verificable</h4>
+          <p>El comprobante impreso ya sale con el QR de la DIAN — el cliente puede verificar la factura al instante.</p>
+        </div>
+      </div>
+      <div class="mosaic-card">
+        <img src="assets/caja-finanzas.png" alt="Caja y finanzas CommerceOS Pro" />
+        <div class="body">
+          <h4>Caja y Finanzas al día</h4>
+          <p>Ingresos, egresos e impuestos (IVA, ICA, retenciones) conciliados con cada venta, en tiempo real.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="video-section" id="demo">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow" style="background:#e0e7ff; color:#4338ca;">Velo funcionando</span>
+      <h2>Nada de mockups: así se usa en el día a día</h2>
+      <p>Dos grabaciones reales del sistema — una venta completa con factura DIAN, y la gestión de un empleado de punta a punta.</p>
+    </div>
+    <div class="video-grid">
+      <div class="video-card">
+        <video controls preload="metadata" poster="assets/pos-venta-exitosa.png">
+          <source src="assets/pos-demo.mp4" type="video/mp4">
+          Tu navegador no soporta video HTML5.
+        </video>
+        <div class="video-caption">
+          <span class="video-tag" style="background:#e0f2fe; color:#0369a1;">Punto de Venta</span>
+          <h4>De la venta al ticket, en segundos</h4>
+          <p>Mirá el flujo completo: buscar productos, cobrar y emitir la factura electrónica DIAN con el ticket ya listo para imprimir.</p>
+        </div>
+      </div>
+      <div class="video-card">
+        <video controls preload="metadata" poster="assets/rrhh.png">
+          <source src="assets/rrhh-demo.mp4" type="video/mp4">
+          Tu navegador no soporta video HTML5.
+        </video>
+        <div class="video-caption">
+          <span class="video-tag" style="background:#dcfce7; color:#15803d;">RRHH · Plan Avanzado</span>
+          <h4>Alta, gestión y desvinculación de un empleado</h4>
+          <p>Desde cargar un empleado nuevo hasta administrar su legajo y, si hace falta, desvincularlo según la normativa laboral colombiana.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:#fff;">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Más allá de la venta</span>
+      <h2>Proveedores, usuarios y equipo, todo controlado</h2>
+      <p>La operación completa de tu negocio, no solo el mostrador.</p>
+    </div>
+    <div class="mosaic">
+      <div class="mosaic-card">
+        <img src="assets/proveedores-orden.png" alt="Órdenes de compra a proveedores" />
+        <div class="body">
+          <h4>Proveedores y compras</h4>
+          <p>Directorio de proveedores, órdenes de compra, recepción de mercadería y cuenta corriente, todo integrado con tu caja.</p>
+        </div>
+      </div>
+      <div class="mosaic-card">
+        <img src="assets/usuarios.png" alt="Administración de usuarios" />
+        <div class="body">
+          <h4>Usuarios y roles</h4>
+          <p>Cada empleado con su propio acceso — Admin o Empleado — sin compartir contraseñas ni perder trazabilidad de quién hizo qué.</p>
+        </div>
+      </div>
+      <div class="mosaic-card">
+        <img src="assets/rrhh.png" alt="Módulo de Recursos Humanos" />
+        <div class="body">
+          <h4>RRHH (Plan Avanzado)</h4>
+          <p>Legajos, contratos, nómina y liquidaciones bajo el Código Sustantivo del Trabajo colombiano — con recibo de sueldo generado automáticamente.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="plans-section" id="planes">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow" style="background:rgba(109,79,245,0.15); color:#b9a6ff;">Planes</span>
+      <h2>Elegí el plan según el tamaño de tu equipo</h2>
+      <p>Los dos planes incluyen POS, inventario, proveedores, caja y facturación electrónica DIAN completa. La diferencia es la gestión de tu equipo de trabajo.</p>
+    </div>
+    <div class="plans-grid">
+      <div class="plan-card">
+        <div class="plan-name">Plan Básico</div>
+        <div class="plan-tag">Para vender y facturar ya</div>
+        <div class="plan-sub">Ideal si tu prioridad es tener el punto de venta, el stock y la facturación DIAN funcionando ya mismo.</div>
+        <ul class="plan-list">
+          <li><svg class="yes" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Punto de Venta completo</li>
+          <li><svg class="yes" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Inventario y proveedores</li>
+          <li><svg class="yes" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Facturación Electrónica DIAN</li>
+          <li><svg class="yes" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Caja, finanzas y respaldo en la nube</li>
+          <li class="dim"><svg class="no" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg> Módulo de RRHH / Nómina</li>
+        </ul>
+        <a href="#contacto" class="plan-btn">Pedir demo del Plan Básico</a>
+      </div>
+      <div class="plan-card featured">
+        <div class="plan-name">Plan Avanzado</div>
+        <div class="plan-tag">Para gestionar todo tu equipo</div>
+        <div class="plan-sub">Todo lo del plan Básico, más el módulo de Recursos Humanos completo para negocios con empleados a cargo.</div>
+        <ul class="plan-list">
+          <li><svg class="yes" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Todo lo del Plan Básico</li>
+          <li><svg class="yes" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Legajos y contratos digitales</li>
+          <li><svg class="yes" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Nómina y recibos de sueldo automáticos</li>
+          <li><svg class="yes" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Liquidaciones y bajas según la ley colombiana (CST)</li>
+        </ul>
+        <a href="#contacto" class="plan-btn">Pedir demo del Plan Avanzado</a>
+      </div>
+    </div>
+    <p class="plans-note">¿No estás seguro cuál te conviene? Pedí la demo y te ayudamos a elegir según tu equipo.</p>
+  </div>
+</section>
+
+<section class="security-section" id="nube">
+  <div class="wrap security-grid">
+    <div class="security-points">
+      <span class="eyebrow">Tranquilidad, no otro problema más</span>
+      <h2 style="font-size:clamp(26px,3vw,34px); font-weight:900; letter-spacing:-0.02em; margin:0 0 8px;">Tus datos, seguros y siempre disponibles</h2>
+      <p style="color:var(--slate-600); font-size:15px; margin:0 0 32px; line-height:1.6;">CommerceOS Pro corre en tu propia computadora — funciona aunque se corte internet — y respalda todo en la nube automáticamente cuando hay conexión.</p>
+
+      <div class="sec-point">
+        <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4f6df5" stroke-width="2.2"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
+        <div><h4>Nunca perdés una venta</h4><p>El sistema funciona 100% local — si se corta la luz o el internet, seguís vendiendo sin trabas.</p></div>
+      </div>
+      <div class="sec-point">
+        <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4f6df5" stroke-width="2.2"><path d="M20 17.58A5 5 0 0018 8h-1.26A8 8 0 104 16.25"/><path d="M12 12v9M9 18l3 3 3-3"/></svg></div>
+        <div><h4>Respaldo automático en la nube</h4><p>Cada negocio tiene su propia base de datos privada, sincronizada sola en segundo plano.</p></div>
+      </div>
+      <div class="sec-point">
+        <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4f6df5" stroke-width="2.2"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M9 9h.01M15 9h.01M9 15h6"/></svg></div>
+        <div><h4>Multi-sucursal listo para crecer</h4><p>La misma base que hoy usás en un local está preparada para sumar más sucursales el día que lo necesites.</p></div>
+      </div>
+    </div>
+    <div class="feature-shot">
+      <div class="browser-bar"><span></span><span></span><span></span></div>
+      <img src="assets/ajustes-nube.png" alt="Conexión a la nube y copia de seguridad" />
+    </div>
+  </div>
+</section>
+
+<section class="cta-final" id="contacto">
+  <div class="wrap">
+    <img src="assets/logo.jpg" alt="CommerceOS Pro" class="logo-small" />
+    <h2>Tu negocio ya podría estar vendiendo y facturando mejor</h2>
+    <p>Pedí una demo gratuita, sin compromiso, y probá CommerceOS Pro con tus propios productos antes de decidir.</p>
+    <div class="hero-ctas">
+      <a href="mailto:silversigurd@gmail.com?subject=Quiero%20una%20demo%20de%20CommerceOS%20Pro" class="btn-primary">
+        Escribinos para tu demo
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a href="#modulos" class="btn-secondary">Volver a ver los módulos</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <div class="footer-brand">
+      <img src="assets/logo.jpg" alt="CommerceOS Pro" />
+      CommerceOS Pro Colombia
+    </div>
+    <div>Sistema de gestión comercial para negocios colombianos — POS · Inventario · Facturación DIAN · RRHH</div>
+  </div>
+</footer>
+
+</body>
+</html>
