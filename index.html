@@ -52,6 +52,11 @@
 
   * { box-sizing: border-box; }
 
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+
   body {
     margin: 0;
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
@@ -931,7 +936,7 @@
           <li><svg class="yes" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Caja, finanzas y respaldo en la nube</li>
           <li class="dim"><svg class="no" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg> Módulo de RRHH / Nómina</li>
         </ul>
-        <a href="#contacto" class="plan-btn">Pedir demo del Plan Básico</a>
+        <a href="#contacto" class="plan-btn" data-plan-message="Hola, quiero pedir una demo del Plan Básico para mi negocio.">Pedir demo del Plan Básico</a>
       </div>
       <div class="plan-card featured">
         <div class="plan-name">Plan Avanzado</div>
@@ -943,7 +948,7 @@
           <li><svg class="yes" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Nómina y recibos de sueldo automáticos</li>
           <li><svg class="yes" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Liquidaciones y bajas según la ley colombiana (CST)</li>
         </ul>
-        <a href="#contacto" class="plan-btn">Pedir demo del Plan Avanzado</a>
+        <a href="#contacto" class="plan-btn" data-plan-message="Hola, quiero pedir una demo del Plan Avanzado para mi negocio.">Pedir demo del Plan Avanzado</a>
       </div>
     </div>
     <p class="plans-note">¿No estás seguro cuál te conviene? Pide la demo y te ayudamos a elegir según tu equipo.</p>
@@ -1065,6 +1070,16 @@
           submitBtn.disabled = false;
           submitBtn.innerHTML = submitLabel;
         });
+    });
+  })();
+
+  (function () {
+    var messageField = document.getElementById('cf-message');
+    if (!messageField) return;
+    document.querySelectorAll('[data-plan-message]').forEach(function (link) {
+      link.addEventListener('click', function () {
+        messageField.value = link.getAttribute('data-plan-message');
+      });
     });
   })();
 </script>
